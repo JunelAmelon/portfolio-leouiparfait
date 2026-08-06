@@ -1,7 +1,7 @@
 import React from 'react';
-import { HERO_IMAGES } from '../data/weddingData';
-import { Send, ArrowUp, Instagram, Facebook, Heart } from 'lucide-react';
-import gsap from 'gsap';
+import { HERO_IMAGES, CONTACT_INFO } from '../data/weddingData';
+import { ArrowUp, Instagram, Facebook, Heart } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 interface FooterBannerProps {
   onOpenContact: () => void;
@@ -13,7 +13,7 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
   isDarkMode = true,
 }) => {
   const scrollToTop = () => {
-    gsap.to(window, { duration: 1, scrollTo: 0, ease: 'power2.inOut' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -34,7 +34,8 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Centered Beige/Dark Tag Card */}
-        <div
+        <Reveal
+          variant="zoom"
           className={`max-w-xl mx-auto p-8 sm:p-12 rounded-xs border text-center polaroid-shadow relative ${
             isDarkMode
               ? 'bg-[#181614] text-[#e8e4dc] border-[#332f28]'
@@ -44,7 +45,7 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
           {/* Ribbon Tag Attachment Accent */}
           <div
             className={`absolute -top-4 left-1/2 -translate-x-1/2 w-6 h-8 rounded-t-xs shadow-sm flex items-center justify-center ${
-              isDarkMode ? 'bg-[#9aa891]' : 'bg-[#8b9a82]'
+              isDarkMode ? 'bg-[#c8c0f5]' : 'bg-[#8b9a82]'
             }`}
           >
             <div className="w-2 h-2 rounded-full bg-white/80" />
@@ -54,7 +55,7 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
             Prêts à{' '}
             <span
               className={`font-script text-4xl sm:text-5xl italic font-normal ${
-                isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
               }`}
             >
               commencer
@@ -67,32 +68,33 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
               isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
             }`}
           >
-            Échangeons autour de votre vision, de votre lieu d'exception, de vos tenues et de tout ce qui
-            rendra votre jour J inoubliable.
+            Échangeons autour de votre vision, de votre offre idéale et de tout ce qui rendra votre
+            jour J inoubliable. Réponse garantie en moins de 30 minutes.
           </p>
 
-          <div className="mt-8">
-            <button
-              onClick={onOpenContact}
-              className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-sans-clean font-medium text-sm transition-all shadow-md hover:shadow-lg ${
+          <div className="mt-8 flex justify-center">
+            <a
+              href="#services"
+              aria-label="Découvrir nos offres"
+              className={`w-24 h-24 sm:w-28 sm:h-28 rounded-full font-sans-clean font-medium text-xs sm:text-sm text-center leading-tight px-3 flex items-center justify-center shadow-md hover:shadow-lg transition-all active:scale-95 ${
                 isDarkMode
-                  ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
+                  ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
                   : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
               }`}
             >
-              <Send className="w-4 h-4" />
-              <span>Prendre contact</span>
-            </button>
+              Découvrir nos offres
+            </a>
           </div>
-        </div>
+        </Reveal>
 
         {/* Footer Navigation & Socials */}
-        <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-sans-clean text-white/70">
+        <Reveal variant="up" className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-sans-clean text-white/70">
           {/* Brand & Tagline */}
           <div className="text-center md:text-left space-y-1">
-            <h3 className="font-serif-main text-2xl text-white">Maria Hoffmann</h3>
+            <h3 className="font-serif-main text-2xl text-white">Le Oui Parfait</h3>
+            <p className="text-[11px] text-white/60">{CONTACT_INFO.siege}</p>
             <p className="text-[11px] text-white/60">
-              Wedding Planner & Photographe d'Exception — Paris, Provence, Europe
+              {CONTACT_INFO.phone} · {CONTACT_INFO.email}
             </p>
           </div>
 
@@ -103,7 +105,7 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#9aa891] hover:text-[#141311] transition-colors"
+              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#c8c0f5] hover:text-[#141311] transition-colors"
             >
               <Instagram className="w-4 h-4" />
             </a>
@@ -112,7 +114,7 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#9aa891] hover:text-[#141311] transition-colors"
+              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#c8c0f5] hover:text-[#141311] transition-colors"
             >
               <Facebook className="w-4 h-4" />
             </a>
@@ -121,7 +123,7 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Pinterest"
-              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#9aa891] hover:text-[#141311] transition-colors"
+              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#c8c0f5] hover:text-[#141311] transition-colors"
             >
               <Heart className="w-4 h-4" />
             </a>
@@ -130,15 +132,15 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
           {/* Back to Top Button */}
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 hover:bg-white/10 text-white transition-all"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 hover:bg-white/10 text-white transition-all text-[11px] sm:text-xs active:scale-95"
           >
             <span>Haut de page</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
-        </div>
+        </Reveal>
 
         <div className="mt-6 text-center text-[10px] text-white/40 font-sans-clean">
-          © 2026 Maria Hoffmann. Tous droits réservés. Design Éditorial Mariage & Photographie.
+          © 2025 Le Oui Parfait. Tous droits réservés. {CONTACT_INFO.showroom}.
         </div>
       </div>
     </footer>

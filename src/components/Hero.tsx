@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { HERO_IMAGES } from '../data/weddingData';
-import { Sparkles, ArrowRight, Download } from 'lucide-react';
+import { RomanticBackground } from './RomanticBackground';
+
 import gsap from 'gsap';
+import { Reveal } from './Reveal';
 
 interface HeroProps {
   onOpenContact: () => void;
@@ -14,9 +16,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenGuide, isDarkMo
   const leftCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const flower1Ref = useRef<HTMLDivElement>(null);
-  const flower2Ref = useRef<HTMLDivElement>(null);
-  const flower3Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -50,16 +49,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenGuide, isDarkMo
         delay: 0.5,
       });
 
-      // Floating gentle animation for flowers
-      gsap.to([flower1Ref.current, flower2Ref.current, flower3Ref.current], {
-        y: '-=12',
-        rotation: '+=5',
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.easeInOut',
-        stagger: 0.4,
-      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -69,73 +58,49 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenGuide, isDarkMo
     <section
       ref={heroRef}
       id="hero"
-      className={`relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center pt-8 pb-16 px-4 sm:px-6 overflow-hidden transition-colors duration-300 ${
+      className={`relative pt-6 sm:pt-8 pb-16 sm:pb-20 px-4 sm:px-6 overflow-hidden transition-colors duration-300 ${
         isDarkMode ? 'bg-[#141311]' : 'bg-[#faf8f5]'
       }`}
     >
+      <RomanticBackground />
+
       {/* Background Decorative Gradient Radial */}
       <div
         className={`absolute inset-0 opacity-70 pointer-events-none ${
           isDarkMode
             ? 'bg-radial from-[#1e1c18] via-[#141311] to-[#0c0c0b]'
-            : 'bg-radial from-white/80 via-[#faf8f5] to-[#f4f0e8]'
+            : 'bg-radial from-white/80 via-[#faf8f5] to-[#c8c0f5]'
         }`}
       />
 
-      {/* Floating White Botanical Flowers */}
-      <div
-        ref={flower1Ref}
-        className="absolute top-12 left-1/2 -translate-x-12 sm:top-16 sm:left-[55%] z-20 pointer-events-none drop-shadow-md"
-      >
+      {/* Eyebrow Row */}
+      <Reveal variant="fade" className="max-w-4xl mx-auto relative z-10">
         <div
-          className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full p-1 shadow-sm border ${
-            isDarkMode ? 'bg-[#22201d] border-[#38332c]' : 'bg-white/90 border-[#e8e4dc]'
+          className={`flex items-center justify-between text-[11px] sm:text-xs font-sans-clean gap-3 mb-6 sm:mb-10 ${
+            isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
           }`}
         >
-          <img
-            src={HERO_IMAGES.flowerOverlay1}
-            alt="Fleur d'anémone"
-            className="w-full h-full object-cover rounded-full"
-            referrerPolicy="no-referrer"
-          />
+          <span>
+            Bonjour, nous sommes
+            <br />
+            <strong className={isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'}>Le Oui Parfait</strong>
+          </span>
+          <span className="flex items-center gap-2 text-right">
+            <span>
+              Basés à
+              <br />
+              Ris-Orangis (91)
+            </span>
+            <span
+              className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center shrink-0 ${
+                isDarkMode ? 'border-[#c8c0f5] text-[#c8c0f5]' : 'border-[#8b9a82] text-[#78876e]'
+              }`}
+            >
+              •
+            </span>
+          </span>
         </div>
-      </div>
-
-      <div
-        ref={flower2Ref}
-        className="absolute bottom-16 left-[20%] sm:left-[35%] z-20 pointer-events-none drop-shadow-md"
-      >
-        <div
-          className={`w-14 h-14 sm:w-20 sm:h-20 rounded-full p-1 shadow-md border ${
-            isDarkMode ? 'bg-[#22201d] border-[#38332c]' : 'bg-white/90 border-[#e8e4dc]'
-          }`}
-        >
-          <img
-            src={HERO_IMAGES.flowerOverlay2}
-            alt="Jasmine blanche"
-            className="w-full h-full object-cover rounded-full"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-      </div>
-
-      <div
-        ref={flower3Ref}
-        className="absolute top-24 right-[10%] sm:right-[22%] z-20 pointer-events-none drop-shadow-md"
-      >
-        <div
-          className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full p-1 shadow-sm border ${
-            isDarkMode ? 'bg-[#22201d] border-[#38332c]' : 'bg-white/90 border-[#e8e4dc]'
-          }`}
-        >
-          <img
-            src={HERO_IMAGES.flowerOverlay1}
-            alt="Pétale de fleur"
-            className="w-full h-full object-cover rounded-full opacity-90"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-      </div>
+      </Reveal>
 
       {/* Main Container */}
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -174,85 +139,75 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenGuide, isDarkMo
             </div>
             <p
               className={`mt-3 text-center font-serif-main text-xs sm:text-sm italic ${
-                isDarkMode ? 'text-[#b5c4ab]' : 'text-[#5c6954]'
+                isDarkMode ? 'text-[#e8e4dc]' : 'text-[#5c6954]'
               }`}
             >
-              « L'émotion capturée au vol »
+              « L'art de sublimer chaque instant »
             </p>
           </div>
         </div>
 
         {/* Center Text Block */}
         <div className="lg:col-span-6 text-center order-1 lg:order-2 my-4 sm:my-0 px-2 sm:px-6">
-          <div
-            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-sans-clean font-medium mb-6 ${
-              isDarkMode
-                ? 'bg-[#9aa891]/15 border-[#9aa891]/30 text-[#b5c4ab]'
-                : 'bg-[#8b9a82]/10 border-[#8b9a82]/30 text-[#5c6954]'
-            }`}
-          >
-            <Sparkles className={`w-3.5 h-3.5 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'}`} />
-            <span>Wedding Planning & Photographie Éditoriale</span>
-          </div>
-
           <h2
             ref={titleRef}
             className={`font-serif-main text-3xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] font-normal tracking-tight ${
-              isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+              isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
             }`}
           >
-            Je capture des{' '}
+            Nous transformons vos{' '}
             <span
               className={`font-script text-4xl sm:text-6xl lg:text-7xl px-1 font-normal inline-block ${
-                isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
               }`}
             >
-              moments
+              plus beaux instants
             </span>{' '}
-            vrais et des{' '}
+            en souvenirs qui durent toute une{' '}
             <span
               className={`font-script text-4xl sm:text-6xl lg:text-7xl px-1 font-normal inline-block ${
-                isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
               }`}
             >
-              histoires
-            </span>{' '}
-            sincères
+              vie
+            </span>
           </h2>
 
+          {/* Small Photo Collage */}
+          <Reveal variant="zoom" delay={150} className="mx-auto mt-8 sm:mt-10 mb-6 sm:mb-8 relative h-[150px] sm:h-[190px] w-[300px] sm:w-[400px]">
+            <img
+              src={HERO_IMAGES.collage1}
+              alt="Mariés authentiques"
+              referrerPolicy="no-referrer"
+              className="absolute left-0 top-5 w-[115px] sm:w-[145px] border-4 sm:border-[6px] border-current object-cover aspect-[3/4] shadow-xl -rotate-6"
+              style={{ borderColor: isDarkMode ? '#1c1a17' : '#ffffff' }}
+            />
+            <img
+              src={HERO_IMAGES.collage2}
+              alt="Bouquet nuptial"
+              referrerPolicy="no-referrer"
+              className="absolute left-1/2 -translate-x-1/2 top-0 w-[130px] sm:w-[165px] border-4 sm:border-[6px] object-cover aspect-[3/4] shadow-xl rotate-2 z-10"
+              style={{ borderColor: isDarkMode ? '#1c1a17' : '#ffffff' }}
+            />
+            <img
+              src={HERO_IMAGES.collage3}
+              alt="Alliances et émotions"
+              referrerPolicy="no-referrer"
+              className="absolute right-0 top-5 w-[100px] sm:w-[130px] border-4 sm:border-[6px] object-cover aspect-[3/4] shadow-xl rotate-6"
+              style={{ borderColor: isDarkMode ? '#1c1a17' : '#ffffff' }}
+            />
+          </Reveal>
+
           <p
-            className={`mt-6 text-sm sm:text-base lg:text-lg font-sans-clean max-w-xl mx-auto leading-relaxed ${
+            className={`mt-8 sm:mt-10 text-sm sm:text-base lg:text-lg font-sans-clean max-w-xl mx-auto leading-relaxed ${
               isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
             }`}
           >
-            De l'organisation sur-mesure de votre mariage à la photographie de votre jour J, je vous
-            aide à vous sentir sereins, naturels et vous-mêmes face à l'objectif.
+            Le Oui Parfait, c'est l'art de sublimer chaque instant : de la planification budgétaire
+            à la coordination du jour J, nous vous accompagnons pour créer des moments inoubliables.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={onOpenContact}
-              className={`w-full sm:w-auto px-8 py-3.5 rounded-full font-sans-clean font-medium text-sm transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group ${
-                isDarkMode
-                  ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
-                  : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
-              }`}
-            >
-              <span>Réserver votre date</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button
-              onClick={onOpenGuide}
-              className={`w-full sm:w-auto px-7 py-3.5 rounded-full border font-sans-clean font-medium text-sm transition-all flex items-center justify-center gap-2 ${
-                isDarkMode
-                  ? 'border-[#9aa891]/50 text-[#b5c4ab] hover:bg-[#9aa891]/15'
-                  : 'border-[#8b9a82]/50 text-[#5c6954] hover:bg-[#8b9a82]/10'
-              }`}
-            >
-              <Download className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'}`} />
-              <span>Guide Mariage Offert</span>
-            </button>
-          </div>
+
         </div>
 
         {/* Right Photo Card (Tilted Dress Hanging Photo) */}
@@ -270,7 +225,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenGuide, isDarkMo
             >
               <img
                 src={HERO_IMAGES.dressHero}
-                alt="Robe de mariée suspendue"
+                alt="Décoration florale de mariage"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -290,13 +245,62 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenGuide, isDarkMo
             </div>
             <p
               className={`mt-3 text-center font-serif-main text-xs sm:text-sm italic ${
-                isDarkMode ? 'text-[#b5c4ab]' : 'text-[#5c6954]'
+                isDarkMode ? 'text-[#e8e4dc]' : 'text-[#5c6954]'
               }`}
             >
-              « Scénographie & Élégance »
+              « Décoration florale »
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Circle Quote Panel */}
+      <Reveal variant="zoom" delay={100} className="mt-14 sm:mt-16 flex justify-center relative z-10">
+        <div
+          className={`w-full max-w-[300px] sm:max-w-[420px] aspect-square rounded-full border flex flex-col items-center justify-center gap-4 sm:gap-6 text-center px-8 sm:px-12 ${
+            isDarkMode ? 'border-[#c8c0f5]/60' : 'border-[#8b9a82]/60'
+          }`}
+        >
+          <p
+            className={`font-sans-clean text-xs sm:text-sm leading-relaxed max-w-[260px] ${
+              isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
+            }`}
+          >
+            Notre approche est humaine, à l'écoute et ancrée dans l'émotion. Nous ne cherchons pas la
+            perfection, mais la sincérité et la magie des vrais instants partagés.
+          </p>
+          <a
+            href="#services"
+            className={`inline-flex px-5 sm:px-7 py-2 sm:py-2.5 rounded-full font-sans-clean font-medium text-xs sm:text-sm transition-all shadow-md active:scale-95 ${
+              isDarkMode
+                ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
+                : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
+            }`}
+          >
+            Découvrir nos offres
+          </a>
+        </div>
+      </Reveal>
+
+      {/* Thread & Bow Divider */}
+      <div className="mt-10 sm:mt-14 flex items-center max-w-5xl mx-auto px-4">
+        <span className={`flex-1 h-px ${isDarkMode ? 'bg-[#c8c0f5]/40' : 'bg-[#8b9a82]/40'}`} />
+        <svg className="w-24 sm:w-36 mx-3 sm:mx-5 shrink-0" viewBox="0 0 170 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M85 45 C 40 5, 5 20, 15 45 C 5 70, 40 85, 85 45"
+            stroke={isDarkMode ? '#c8c0f5' : '#8b9a82'}
+            strokeWidth="1.5"
+          />
+          <path
+            d="M85 45 C 130 5, 165 20, 155 45 C 165 70, 130 85, 85 45"
+            stroke={isDarkMode ? '#c8c0f5' : '#8b9a82'}
+            strokeWidth="1.5"
+          />
+          <circle cx="85" cy="45" r="4" fill={isDarkMode ? '#c8c0f5' : '#8b9a82'} />
+          <path d="M85 45 L 60 88" stroke={isDarkMode ? '#c8c0f5' : '#8b9a82'} strokeWidth="1.5" />
+          <path d="M85 45 L 110 88" stroke={isDarkMode ? '#c8c0f5' : '#8b9a82'} strokeWidth="1.5" />
+        </svg>
+        <span className={`flex-1 h-px ${isDarkMode ? 'bg-[#c8c0f5]/40' : 'bg-[#8b9a82]/40'}`} />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Download, CheckCircle, BookOpen, Sparkles, Printer } from 'lucide-react';
+import { X, Send, CheckCircle, Camera, Sparkles, Car } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface GuideDownloadModalProps {
@@ -13,23 +13,20 @@ export const GuideDownloadModal: React.FC<GuideDownloadModalProps> = ({
   onClose,
   isDarkMode = true,
 }) => {
-  const [downloaded, setDownloaded] = useState(false);
+  const [reserved, setReserved] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleDownload = () => {
-    setDownloaded(true);
+  const handleReserve = () => {
+    setReserved(true);
     confetti({
       particleCount: 60,
       spread: 60,
       origin: { y: 0.5 },
       colors: isDarkMode
-        ? ['#9aa891', '#b5c4ab', '#ffffff']
+        ? ['#c8c0f5', '#e8e4dc', '#ffffff']
         : ['#8b9a82', '#78876e', '#ffffff'],
     });
-
-    // Simulate printing / downloading
-    window.print();
   };
 
   return (
@@ -45,7 +42,7 @@ export const GuideDownloadModal: React.FC<GuideDownloadModalProps> = ({
           onClick={onClose}
           className={`absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
             isDarkMode
-              ? 'bg-[#9aa891]/15 text-[#b5c4ab] hover:bg-[#9aa891] hover:text-[#141311]'
+              ? 'bg-[#c8c0f5]/15 text-[#e8e4dc] hover:bg-[#c8c0f5] hover:text-[#141311]'
               : 'bg-[#8b9a82]/15 text-[#5c6954] hover:bg-[#8b9a82] hover:text-white'
           }`}
         >
@@ -56,26 +53,26 @@ export const GuideDownloadModal: React.FC<GuideDownloadModalProps> = ({
           <div
             className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-sans-clean mb-2 ${
               isDarkMode
-                ? 'bg-[#9aa891]/15 text-[#b5c4ab]'
+                ? 'bg-[#c8c0f5]/15 text-[#e8e4dc]'
                 : 'bg-[#8b9a82]/15 text-[#5c6954]'
             }`}
           >
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>Guide Exclusif Offert — Édition 2026/2027</span>
+            <Camera className="w-3.5 h-3.5" />
+            <span>Animation & Séance Photo</span>
           </div>
           <h2
             className={`font-serif-main text-3xl sm:text-4xl ${
-              isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+              isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
             }`}
           >
-            Le Guide d'Organisation du Mariage Serein
+            Le Oui Parfait Shooting Tour
           </h2>
           <p
             className={`text-xs sm:text-sm font-sans-clean mt-1 ${
-              isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+              isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
             }`}
           >
-            Par Maria Hoffmann — Wedding Planner & Photographe
+            L'EVJF / EVG nouvelle génération à Paris
           </p>
         </div>
 
@@ -89,63 +86,63 @@ export const GuideDownloadModal: React.FC<GuideDownloadModalProps> = ({
         >
           <h3
             className={`font-serif-main text-lg flex items-center gap-2 ${
-              isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+              isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
             }`}
           >
-            <Sparkles className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'}`} />
-            Sommaire du Guide Téléchargeable :
+            <Sparkles className={`w-4 h-4 ${isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'}`} />
+            Ce qui est inclus dans votre journée :
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex items-start gap-2">
-              <CheckCircle
+              <Car
                 className={`w-4 h-4 shrink-0 mt-0.5 ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'
                 }`}
               />
               <div>
-                <strong className={isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'}>
-                  J-12 à J-6 mois :
+                <strong className={isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'}>
+                  Transport :
                 </strong>{' '}
-                Définition du concept, sélection du domaine et des prestataires clés.
+                Navette avec chauffeur ou berline de luxe pour vous et vos proches.
               </div>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle
                 className={`w-4 h-4 shrink-0 mt-0.5 ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'
                 }`}
               />
               <div>
-                <strong className={isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'}>
-                  J-3 mois :
+                <strong className={isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'}>
+                  Shooting :
                 </strong>{' '}
-                Essayages de tenues, scénographie florale et menu traiteur.
+                Séance photo & vidéo en extérieur et/ou en studio.
               </div>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle
                 className={`w-4 h-4 shrink-0 mt-0.5 ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'
                 }`}
               />
               <div>
-                <strong className={isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'}>
-                  J-1 mois :
+                <strong className={isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'}>
+                  Mise en beauté :
                 </strong>{' '}
-                Planning heure par heure du jour J et dossier photographe.
+                Un accompagnement soigné pour être sublime devant l'objectif.
               </div>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle
                 className={`w-4 h-4 shrink-0 mt-0.5 ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'
                 }`}
               />
               <div>
-                <strong className={isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'}>
-                  Kit d'Urgence Jour J :
+                <strong className={isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'}>
+                  Souvenirs :
                 </strong>{' '}
-                15 indispensables secrets pour la mariée.
+                Des souvenirs inoubliables à partager entre proches.
               </div>
             </div>
           </div>
@@ -154,19 +151,19 @@ export const GuideDownloadModal: React.FC<GuideDownloadModalProps> = ({
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
-            onClick={handleDownload}
-            className={`w-full sm:w-auto px-8 py-3.5 rounded-full font-sans-clean font-medium text-sm transition-all shadow-md flex items-center justify-center gap-2 ${
+            onClick={handleReserve}
+            className={`w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-sans-clean font-medium text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-95 ${
               isDarkMode
-                ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
+                ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
                 : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
             }`}
           >
-            <Download className="w-4 h-4" />
-            <span>{downloaded ? 'Téléchargé ! Ré-imprimer' : 'Télécharger le PDF / Imprimer'}</span>
+            <Send className="w-4 h-4" />
+            <span>{reserved ? 'Demande envoyée !' : 'Réserver mon Shooting Tour'}</span>
           </button>
           <button
             onClick={onClose}
-            className={`w-full sm:w-auto px-6 py-3.5 rounded-full border font-sans-clean font-medium text-sm transition-all ${
+            className={`w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full border font-sans-clean font-medium text-xs sm:text-sm transition-all active:scale-95 ${
               isDarkMode
                 ? 'border-[#38332c] text-[#b5b0a5] hover:bg-[#22201d]'
                 : 'border-[#e8e4dc] text-[#5a5750] hover:bg-white'

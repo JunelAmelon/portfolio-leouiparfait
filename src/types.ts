@@ -5,6 +5,8 @@ export interface StoryItem {
   date: string;
   location: string;
   image: string;
+  video?: string;
+  gallery?: string[];
   category: 'mariage' | 'elopement' | 'engagement';
   description: string;
 }

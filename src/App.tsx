@@ -8,6 +8,7 @@ import { ProcessSection } from './components/ProcessSection';
 import { CategoriesArches } from './components/CategoriesArches';
 import { CreativeProcessCollage } from './components/CreativeProcessCollage';
 import { TestimonialsStampGrid } from './components/TestimonialsStampGrid';
+import { NosLieux } from './components/NosLieux';
 import { FooterBanner } from './components/FooterBanner';
 import { ContactModal } from './components/ContactModal';
 import { GuideDownloadModal } from './components/GuideDownloadModal';
@@ -15,7 +16,7 @@ import { PhotoLightboxModal } from './components/PhotoLightboxModal';
 import { StoryItem, ServiceCategory } from './types';
 
 export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode] = useState(true);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [selectedStory, setSelectedStory] = useState<StoryItem | null>(null);
@@ -27,7 +28,7 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 font-sans-clean antialiased selection:bg-[#9aa891] selection:text-[#141311] ${
+      className={`min-h-screen transition-colors duration-300 font-sans-clean antialiased selection:bg-[#c8c0f5] selection:text-[#141311] ${
         isDarkMode
           ? 'bg-[#141311] text-[#e8e4dc] dark-mode'
           : 'bg-[#faf8f5] text-[#2c2b29]'
@@ -36,7 +37,6 @@ export default function App() {
       {/* Navigation */}
       <Navbar
         isDarkMode={isDarkMode}
-        onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
         onOpenContact={() => setIsContactOpen(true)}
         onOpenGuide={() => setIsGuideOpen(true)}
       />
@@ -56,37 +56,43 @@ export default function App() {
           onSelectStory={(story) => setSelectedStory(story)}
         />
 
-        {/* 3. About Me Section & Vendor Logos */}
+        {/* 3. Nos Lieux Bento */}
+        <NosLieux />
+
+        {/* 4. About Me Section & Vendor Logos */}
         <AboutSection
           isDarkMode={isDarkMode}
           onOpenContact={() => setIsContactOpen(true)}
         />
 
-        {/* 4. Feeling Overwhelmed / Wedding Guide Banner */}
+        {/* 5. Feeling Overwhelmed / Wedding Guide Banner */}
         <WeddingGuideBanner
           isDarkMode={isDarkMode}
           onOpenGuide={() => setIsGuideOpen(true)}
         />
 
-        {/* 5. Process "How we make magic together" */}
+        {/* 6. Process "How we make magic together" */}
         <ProcessSection
           isDarkMode={isDarkMode}
           onOpenContact={() => setIsContactOpen(true)}
         />
 
-        {/* 6. Service Categories Arches */}
+        {/* 7. Service Categories Arches */}
         <CategoriesArches
           isDarkMode={isDarkMode}
           onSelectCategory={handleSelectCategory}
         />
 
-        {/* 7. Creative Process Collage */}
-        <CreativeProcessCollage isDarkMode={isDarkMode} />
+        {/* 8. Creative Process Collage */}
+        <CreativeProcessCollage
+          isDarkMode={isDarkMode}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
 
-        {/* 8. Testimonials Stamp Grid */}
+        {/* 9. Testimonials Stamp Grid */}
         <TestimonialsStampGrid isDarkMode={isDarkMode} />
 
-        {/* 9. Dark Floral Footer Banner */}
+        {/* 10. Dark Floral Footer Banner */}
         <FooterBanner
           isDarkMode={isDarkMode}
           onOpenContact={() => setIsContactOpen(true)}

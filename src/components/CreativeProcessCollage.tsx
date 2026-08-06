@@ -1,44 +1,47 @@
 import React from 'react';
 import { CREATIVE_COLLAGE_DATA, HERO_IMAGES } from '../data/weddingData';
 import { Film, Heart, Sparkles } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 interface CreativeProcessCollageProps {
   isDarkMode?: boolean;
+  onOpenContact?: () => void;
 }
 
 export const CreativeProcessCollage: React.FC<CreativeProcessCollageProps> = ({
   isDarkMode = true,
+  onOpenContact,
 }) => {
   return (
     <section
       className={`py-16 sm:py-24 px-4 sm:px-6 overflow-hidden relative transition-colors duration-300 ${
-        isDarkMode ? 'bg-[#181714]' : 'bg-[#f4f0e8]/40'
+        isDarkMode ? 'bg-[#181714]' : 'bg-[#c8c0f5]/40'
       }`}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <Reveal variant="fade" className="text-center mb-16">
           <h2
             className={`font-serif-main text-3xl sm:text-5xl lg:text-6xl font-normal ${
-              isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+              isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
             }`}
           >
             {CREATIVE_COLLAGE_DATA.heading}
           </h2>
           <p
             className={`font-script text-2xl sm:text-3xl mt-1 ${
-              isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+              isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
             }`}
           >
             {CREATIVE_COLLAGE_DATA.subheading}
           </p>
-        </div>
+        </Reveal>
 
         {/* Collage Layout Container */}
         <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* SVG Background Path Line */}
           <svg
             className={`absolute inset-0 w-full h-full pointer-events-none hidden lg:block ${
-              isDarkMode ? 'text-[#9aa891]/20' : 'text-[#8b9a82]/30'
+              isDarkMode ? 'text-[#c8c0f5]/20' : 'text-[#8b9a82]/30'
             }`}
             fill="none"
             viewBox="0 0 1000 600"
@@ -52,7 +55,7 @@ export const CreativeProcessCollage: React.FC<CreativeProcessCollageProps> = ({
           </svg>
 
           {/* Left Column: Large Preparation Photo + Text */}
-          <div className="lg:col-span-5 space-y-6 relative z-10">
+          <Reveal variant="left" className="lg:col-span-5 space-y-6 relative z-10">
             <div
               className={`relative p-3 sm:p-4 rounded-xs border polaroid-shadow ${
                 isDarkMode ? 'bg-[#1c1a17] border-[#332f28]' : 'bg-white border-[#e8e4dc]'
@@ -93,7 +96,7 @@ export const CreativeProcessCollage: React.FC<CreativeProcessCollageProps> = ({
             >
               {CREATIVE_COLLAGE_DATA.point1}
             </p>
-          </div>
+          </Reveal>
 
           {/* Film Strip Divider Graphic (Middle) */}
           <div className="hidden lg:flex lg:col-span-1 justify-center items-center">
@@ -112,7 +115,7 @@ export const CreativeProcessCollage: React.FC<CreativeProcessCollageProps> = ({
           </div>
 
           {/* Right Column: Running Couple + Polaroid */}
-          <div className="lg:col-span-6 space-y-8 relative z-10">
+          <Reveal variant="right" className="lg:col-span-6 space-y-8 relative z-10">
             {/* Top Right Photo */}
             <div
               className={`p-3 rounded-xs border polaroid-shadow max-w-md ml-auto ${
@@ -159,7 +162,7 @@ export const CreativeProcessCollage: React.FC<CreativeProcessCollageProps> = ({
                 />
               </div>
               <div className="mt-3 flex items-center gap-2">
-                <Heart className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'}`} />
+                <Heart className={`w-4 h-4 ${isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'}`} />
                 <p
                   className={`text-xs font-serif-main italic ${
                     isDarkMode ? 'text-[#e8e4dc]' : 'text-[#2c2b29]'
@@ -169,7 +172,7 @@ export const CreativeProcessCollage: React.FC<CreativeProcessCollageProps> = ({
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

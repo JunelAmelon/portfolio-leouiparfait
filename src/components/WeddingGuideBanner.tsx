@@ -1,6 +1,7 @@
 import React from 'react';
-import { Download, BookOpen, CheckCircle2 } from 'lucide-react';
+import { Sparkles, CheckCircle2 } from 'lucide-react';
 import { HERO_IMAGES } from '../data/weddingData';
+import { Reveal } from './Reveal';
 
 interface WeddingGuideBannerProps {
   onOpenGuide: () => void;
@@ -24,7 +25,7 @@ export const WeddingGuideBanner: React.FC<WeddingGuideBannerProps> = ({
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
           {/* Left Floating Tilted Photo Frame */}
-          <div className="lg:col-span-5 flex justify-center">
+          <Reveal variant="left" className="lg:col-span-5 flex justify-center">
             <div
               className={`relative p-3 rounded-xs border transform -rotate-3 hover:rotate-0 transition-transform duration-500 max-w-[280px] w-full shadow-md ${
                 isDarkMode ? 'bg-[#25221d] border-[#3e3931]' : 'bg-[#faf8f5] border-[#e8e4dc]'
@@ -36,9 +37,9 @@ export const WeddingGuideBanner: React.FC<WeddingGuideBannerProps> = ({
                 }`}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=85"
-                  alt="Couple au bord de mer"
-                  className="w-full h-full object-cover"
+                  src={encodeURI('/shooting tour.webp')}
+                  alt="Shooting Tour EVJF / EVG à Paris"
+                  className="w-full h-full object-contain"
                   referrerPolicy="no-referrer"
                 />
                 <div
@@ -56,39 +57,39 @@ export const WeddingGuideBanner: React.FC<WeddingGuideBannerProps> = ({
               </div>
               <p
                 className={`mt-2 text-center font-serif-main text-xs italic ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
                 }`}
               >
-                Guide exclusif 2026 / 2027
+                EVJF / EVG Shooting Tour à Paris
               </p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Text Content */}
-          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
+          <Reveal variant="right" className="lg:col-span-7 space-y-5 text-center lg:text-left">
             <div
               className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-sans-clean font-medium ${
                 isDarkMode
-                  ? 'bg-[#9aa891]/15 text-[#b5c4ab]'
+                  ? 'bg-[#c8c0f5]/15 text-[#e8e4dc]'
                   : 'bg-[#8b9a82]/15 text-[#5c6954]'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Guide d'Organisation Offert</span>
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>EVJF / EVG Shooting Tour à Paris</span>
             </div>
 
             <h2
               className={`font-serif-main text-3xl sm:text-4xl lg:text-5xl leading-tight ${
-                isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+                isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
               }`}
             >
-              Anxieux ou dépassés par l'organisation de votre{' '}
+              L'EVJF / EVG nouvelle génération à{' '}
               <span
                 className={`font-script text-4xl sm:text-5xl italic font-normal ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
                 }`}
               >
-                mariage ?
+                Paris
               </span>
             </h2>
 
@@ -97,8 +98,8 @@ export const WeddingGuideBanner: React.FC<WeddingGuideBannerProps> = ({
                 isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
               }`}
             >
-              Obtenez notre guide de mariage complet – rempli de plannings pas-à-pas, de conseils avisés
-              pour votre budget, de checklists pour le jour J et d'astuces pour des photos naturelles.
+              Le Shooting Tour by Le Oui Parfait, c'est une journée ou demi-journée sur mesure, pensée
+              pour offrir à la future mariée ou au futur marié une expérience unique à vivre entre proches.
             </p>
 
             <ul
@@ -108,44 +109,32 @@ export const WeddingGuideBanner: React.FC<WeddingGuideBannerProps> = ({
             >
               <li className="flex items-center gap-2">
                 <CheckCircle2
-                  className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'}`}
+                  className={`w-4 h-4 ${isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'}`}
                 />
-                <span>Rétroplanning mois par mois</span>
+                <span>Navette avec chauffeur ou berline de luxe</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2
-                  className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'}`}
+                  className={`w-4 h-4 ${isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'}`}
                 />
-                <span>Calculateur de budget indicatif</span>
+                <span>Shooting photo & vidéo (extérieur et/ou studio)</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2
-                  className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'}`}
+                  className={`w-4 h-4 ${isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'}`}
                 />
-                <span>Liste de kit d'urgence jour J</span>
+                <span>Mise en beauté & souvenirs inoubliables</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2
-                  className={`w-4 h-4 ${isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'}`}
+                  className={`w-4 h-4 ${isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'}`}
                 />
-                <span>Guide des meilleures heures photo</span>
+                <span>Journée ou demi-journée sur mesure entre proches</span>
               </li>
             </ul>
 
-            <div className="pt-3">
-              <button
-                onClick={onOpenGuide}
-                className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-sans-clean font-medium text-sm transition-all shadow-md hover:shadow-lg ${
-                  isDarkMode
-                    ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
-                    : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
-                }`}
-              >
-                <Download className="w-4 h-4" />
-                <span>Télécharger le guide immédiatement</span>
-              </button>
-            </div>
-          </div>
+
+          </Reveal>
         </div>
       </div>
     </section>

@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Instagram, Facebook, Heart, Menu as MenuIcon, X, Send, Moon, Sun } from 'lucide-react';
+import { Instagram, Facebook, Menu as MenuIcon, X } from 'lucide-react';
 import gsap from 'gsap';
 
 interface NavbarProps {
   onOpenContact: () => void;
   onOpenGuide: () => void;
   isDarkMode: boolean;
-  onToggleDarkMode: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenContact,
   onOpenGuide,
   isDarkMode,
-  onToggleDarkMode,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -38,11 +36,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: 'Accueil', href: '#hero' },
-    { label: 'Histoires & Mariages', href: '#stories' },
+    { label: 'Portfolio', href: '#stories' },
+    { label: 'Lieux', href: '#lieux' },
     { label: 'À Propos', href: '#about' },
-    { label: 'Services & Arches', href: '#services' },
+    { label: 'Tarifs & Prestations', href: '#services' },
     { label: 'Notre Processus', href: '#process' },
-    { label: 'Avis des Mariés', href: '#testimonials' },
+    { label: 'Avis des Couples', href: '#testimonials' },
   ];
 
   return (
@@ -54,117 +53,72 @@ export const Navbar: React.FC<NavbarProps> = ({
             : 'bg-[#faf8f5]/90 border-[#e8e4dc]/60'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Social Icons & Theme Switcher Left */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+          {/* Social Icons & Theme Switcher Left — hidden on mobile so logo & menu stay in focus */}
+          <div className="hidden md:flex items-center space-x-2 sm:space-x-3">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/leouiparfait_officiel/?__d=11"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-all transform hover:scale-105 ${
                 isDarkMode
-                  ? 'bg-[#9aa891]/15 text-[#b5c4ab] hover:bg-[#9aa891] hover:text-[#141311]'
+                  ? 'bg-[#c8c0f5]/15 text-[#e8e4dc] hover:bg-[#c8c0f5] hover:text-[#141311]'
                   : 'bg-[#8b9a82]/15 text-[#5c6954] hover:bg-[#8b9a82] hover:text-white'
               }`}
             >
               <Instagram className="w-4 h-4" />
             </a>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/61575405186878/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-all transform hover:scale-105 ${
                 isDarkMode
-                  ? 'bg-[#9aa891]/15 text-[#b5c4ab] hover:bg-[#9aa891] hover:text-[#141311]'
+                  ? 'bg-[#c8c0f5]/15 text-[#e8e4dc] hover:bg-[#c8c0f5] hover:text-[#141311]'
                   : 'bg-[#8b9a82]/15 text-[#5c6954] hover:bg-[#8b9a82] hover:text-white'
               }`}
             >
               <Facebook className="w-4 h-4" />
             </a>
-            <a
-              href="https://pinterest.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Pinterest"
-              className={`w-9 h-9 rounded-full flex items-center justify-center transition-all transform hover:scale-105 ${
-                isDarkMode
-                  ? 'bg-[#9aa891]/15 text-[#b5c4ab] hover:bg-[#9aa891] hover:text-[#141311]'
-                  : 'bg-[#8b9a82]/15 text-[#5c6954] hover:bg-[#8b9a82] hover:text-white'
-              }`}
-            >
-              <Heart className="w-4 h-4" />
-            </a>
 
-            {/* Dark/Light Theme Switch Button */}
-            <button
-              onClick={onToggleDarkMode}
-              aria-label="Changer de thème"
-              title={isDarkMode ? 'Passer en Mode Clair' : 'Passer en Mode Sombre'}
-              className={`px-3 py-1.5 rounded-full text-xs font-sans-clean flex items-center gap-1.5 transition-all ml-1 border ${
-                isDarkMode
-                  ? 'bg-[#282520] border-[#3e3931] text-[#e8e4dc] hover:border-[#9aa891]'
-                  : 'bg-[#eee9df] border-[#dcd6ca] text-[#2c2b29] hover:border-[#8b9a82]'
-              }`}
-            >
-              {isDarkMode ? (
-                <>
-                  <Sun className="w-3.5 h-3.5 text-[#e0ca97]" />
-                  <span className="hidden sm:inline">Clair</span>
-                </>
-              ) : (
-                <>
-                  <Moon className="w-3.5 h-3.5 text-[#5c6954]" />
-                  <span className="hidden sm:inline">Sombre</span>
-                </>
-              )}
-            </button>
           </div>
 
-          {/* Central Logo */}
-          <a href="#hero" className="text-center group">
-            <h1
-              className={`font-serif-main text-2xl sm:text-3xl lg:text-4xl tracking-tight font-medium transition-colors ${
-                isDarkMode
-                  ? 'text-[#f4f0e8] group-hover:text-[#9aa891]'
-                  : 'text-[#2c2b29] group-hover:text-[#8b9a82]'
+          {/* Logo — always visible, top priority on mobile */}
+          <a href="#hero" className="text-center group shrink-0">
+            <img
+              src="/logo-horizontal.png"
+              alt="Le Oui Parfait"
+              className={`h-8 sm:h-11 w-auto transition-transform group-hover:scale-105 ${
+                isDarkMode ? 'bg-[#e8e4dc] rounded-md px-2 py-1' : ''
               }`}
-            >
-              Maria
-            </h1>
-            <div
-              className={`font-script text-lg sm:text-xl -mt-2 tracking-widest ${
-                isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
-              }`}
-            >
-              Hoffmann
-            </div>
+            />
           </a>
 
-          {/* Right Action Buttons */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <button
-              onClick={onOpenContact}
-              className={`hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-sans-clean font-medium active:scale-95 transition-all shadow-sm ${
+          {/* Right Action Buttons — compact on mobile, menu always reachable */}
+          <div className="flex items-center space-x-1.5 sm:space-x-3">
+            <a
+              href="#services"
+              className={`hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-sans-clean font-medium active:scale-95 transition-all shadow-sm ${
                 isDarkMode
-                  ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
+                  ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
                   : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
               }`}
             >
-              <Send className="w-3.5 h-3.5" />
-              <span>Prendre contact</span>
-            </button>
+              <span>Découvrir nos offres</span>
+            </a>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`px-4 py-2 rounded-full border text-xs sm:text-sm font-sans-clean font-medium transition-all flex items-center gap-1.5 ${
+              aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border text-xs sm:text-sm font-sans-clean font-medium transition-all flex items-center gap-1.5 active:scale-95 ${
                 isDarkMode
-                  ? 'border-[#9aa891]/40 text-[#e8e4dc] hover:bg-[#9aa891]/15'
+                  ? 'border-[#c8c0f5]/40 text-[#e8e4dc] hover:bg-[#c8c0f5]/15'
                   : 'border-[#8b9a82]/40 text-[#2c2b29] hover:bg-[#8b9a82]/10'
               }`}
             >
               {isMenuOpen ? <X className="w-4 h-4" /> : <MenuIcon className="w-4 h-4" />}
-              <span>{isMenuOpen ? 'Fermer' : 'Menu'}</span>
+              <span className="hidden xs:inline">{isMenuOpen ? 'Fermer' : 'Menu'}</span>
             </button>
           </div>
         </div>
@@ -174,14 +128,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className={`fixed inset-0 z-30 pt-28 px-6 pb-12 flex flex-col justify-between overflow-y-auto ${
+          className={`fixed inset-0 z-30 pt-24 sm:pt-28 px-5 sm:px-6 pb-10 sm:pb-12 flex flex-col justify-between overflow-y-auto ${
             isDarkMode ? 'bg-[#141311]/98 text-[#e8e4dc]' : 'bg-[#faf8f5]/98 text-[#2c2b29]'
           }`}
         >
           <div className="max-w-3xl mx-auto w-full text-center my-auto">
             <p
               className={`text-xs font-sans-clean uppercase tracking-widest mb-6 ${
-                isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
               }`}
             >
               Navigation & Services
@@ -192,9 +146,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`font-serif-main text-3xl sm:text-4xl transition-colors hover:italic ${
+                  className={`font-serif-main text-2xl sm:text-4xl transition-colors hover:italic ${
                     isDarkMode
-                      ? 'text-[#e8e4dc] hover:text-[#9aa891]'
+                      ? 'text-[#e8e4dc] hover:text-[#c8c0f5]'
                       : 'text-[#2c2b29] hover:text-[#8b9a82]'
                   }`}
                 >
@@ -204,7 +158,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </nav>
 
             <div
-              className={`mt-10 pt-8 border-t flex flex-wrap justify-center gap-4 ${
+              className={`mt-8 sm:mt-10 pt-6 sm:pt-8 border-t flex flex-wrap justify-center gap-3 sm:gap-4 ${
                 isDarkMode ? 'border-[#2e2a24]' : 'border-[#e8e4dc]'
               }`}
             >
@@ -213,27 +167,57 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setIsMenuOpen(false);
                   onOpenContact();
                 }}
-                className={`px-8 py-3 rounded-full font-sans-clean text-sm font-medium transition-all shadow-md ${
+                className={`px-5 sm:px-8 py-2.5 sm:py-3 rounded-full font-sans-clean text-xs sm:text-sm font-medium transition-all shadow-md ${
                   isDarkMode
-                    ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
+                    ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
                     : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
                 }`}
               >
-                Demander un devis sur-mesure
+                Vérifier ma date de mariage
               </button>
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
                   onOpenGuide();
                 }}
-                className={`px-8 py-3 rounded-full border font-sans-clean text-sm font-medium transition-all ${
+                className={`px-5 sm:px-8 py-2.5 sm:py-3 rounded-full border font-sans-clean text-xs sm:text-sm font-medium transition-all ${
                   isDarkMode
-                    ? 'border-[#9aa891] text-[#9aa891] hover:bg-[#9aa891]/15'
+                    ? 'border-[#c8c0f5] text-[#c8c0f5] hover:bg-[#c8c0f5]/15'
                     : 'border-[#8b9a82] text-[#5c6954] hover:bg-[#8b9a82]/10'
                 }`}
               >
-                Guide Mariage Offert
+                Shooting Tour EVJF / EVG
               </button>
+            </div>
+
+            {/* Socials — moved here on mobile, kept out of the header */}
+            <div className="mt-8 flex md:hidden items-center justify-center gap-3">
+              <a
+                href="https://www.instagram.com/leouiparfait_officiel/?__d=11"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                  isDarkMode
+                    ? 'bg-[#c8c0f5]/15 text-[#e8e4dc]'
+                    : 'bg-[#8b9a82]/15 text-[#5c6954]'
+                }`}
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/61575405186878/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                  isDarkMode
+                    ? 'bg-[#c8c0f5]/15 text-[#e8e4dc]'
+                    : 'bg-[#8b9a82]/15 text-[#5c6954]'
+                }`}
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
@@ -242,7 +226,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               isDarkMode ? 'text-[#807b71]' : 'text-[#8a8780]'
             }`}
           >
-            © 2026 Maria Hoffmann. Wedding Planning & Photographie d'Exception.
+            © 2025 Le Oui Parfait. L'art de sublimer chaque instant.
           </div>
         </div>
       )}

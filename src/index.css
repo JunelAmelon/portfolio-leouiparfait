@@ -32,7 +32,7 @@
 
 .stamp-border-olive {
   background: #465342;
-  color: #f4f0e8;
+  color: #c8c0f5;
   position: relative;
   border: 1px dashed #62725d;
 }
@@ -59,10 +59,10 @@
   background: #141311;
 }
 ::-webkit-scrollbar-thumb {
-  background: #9aa891;
+  background: #c8c0f5;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b5c4ab;
+  background: #e8e4dc;
 }
 

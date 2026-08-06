@@ -17,11 +17,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     name: '',
     email: '',
     phone: '',
+    subject: '',
     weddingDate: '',
-    location: '',
-    serviceType: 'Organisation Complète & Photo',
-    budget: '15000',
+    eventType: 'Offre Signature — Mariage clé en main',
     message: '',
+    consent: false,
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -38,7 +38,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       spread: 70,
       origin: { y: 0.6 },
       colors: isDarkMode
-        ? ['#9aa891', '#b5c4ab', '#2e2a24', '#ffffff']
+        ? ['#c8c0f5', '#e8e4dc', '#2e2a24', '#ffffff']
         : ['#8b9a82', '#78876e', '#e8e4dc', '#ffffff'],
     });
   };
@@ -57,7 +57,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           onClick={onClose}
           className={`absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
             isDarkMode
-              ? 'bg-[#9aa891]/15 text-[#b5c4ab] hover:bg-[#9aa891] hover:text-[#141311]'
+              ? 'bg-[#c8c0f5]/15 text-[#e8e4dc] hover:bg-[#c8c0f5] hover:text-[#141311]'
               : 'bg-[#8b9a82]/15 text-[#5c6954] hover:bg-[#8b9a82] hover:text-white'
           }`}
         >
@@ -69,7 +69,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <div
               className={`w-16 h-16 rounded-full mx-auto flex items-center justify-center ${
                 isDarkMode
-                  ? 'bg-[#9aa891]/20 text-[#b5c4ab]'
+                  ? 'bg-[#c8c0f5]/20 text-[#e8e4dc]'
                   : 'bg-[#8b9a82]/20 text-[#5c6954]'
               }`}
             >
@@ -77,7 +77,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
             <h3
               className={`font-serif-main text-3xl sm:text-4xl ${
-                isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+                isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
               }`}
             >
               Merci {formData.name || 'chers mariés'} !
@@ -87,17 +87,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
               }`}
             >
-              Votre demande a bien été reçue. Maria étudiera votre projet et vous recontactera sous 24h
-              avec une proposition sur-mesure.
+              Votre demande a bien été reçue. Notre équipe étudie votre projet et vous recontactera en
+              moins de 30 minutes avec une proposition sur-mesure.
             </p>
             <button
               onClick={() => {
                 setSubmitted(false);
                 onClose();
               }}
-              className={`mt-6 px-8 py-3 rounded-full text-sm font-sans-clean font-medium transition-all ${
+              className={`mt-6 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-sans-clean font-medium transition-all active:scale-95 ${
                 isDarkMode
-                  ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
+                  ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
                   : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
               }`}
             >
@@ -110,7 +110,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <div
                 className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-sans-clean mb-2 ${
                   isDarkMode
-                    ? 'bg-[#9aa891]/15 text-[#b5c4ab]'
+                    ? 'bg-[#c8c0f5]/15 text-[#e8e4dc]'
                     : 'bg-[#8b9a82]/15 text-[#5c6954]'
                 }`}
               >
@@ -119,14 +119,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               </div>
               <h2
                 className={`font-serif-main text-3xl sm:text-4xl ${
-                  isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
                 }`}
               >
                 Racontez-moi votre projet
               </h2>
               <p
                 className={`text-xs sm:text-sm font-sans-clean mt-1 ${
-                  isDarkMode ? 'text-[#9aa891]' : 'text-[#78876e]'
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
                 }`}
               >
                 Discutons ensemble de vos rêves, de votre lieu et de vos envies.
@@ -141,7 +141,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
                     }`}
                   >
-                    Vos Prénoms & Noms *
+                    Nom complet *
                   </label>
                   <input
                     type="text"
@@ -151,7 +151,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     placeholder="Camille & Antoine"
                     className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
                       isDarkMode
-                        ? 'bg-[#22201d] border-[#38332c] text-[#f4f0e8] focus:border-[#9aa891]'
+                        ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
                         : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
                     }`}
                   />
@@ -172,11 +172,32 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     placeholder="exemple@email.com"
                     className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
                       isDarkMode
-                        ? 'bg-[#22201d] border-[#38332c] text-[#f4f0e8] focus:border-[#9aa891]'
+                        ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
                         : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
                     }`}
                   />
                 </div>
+              </div>
+
+              <div>
+                <label
+                  className={`block font-medium mb-1 ${
+                    isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
+                  }`}
+                >
+                  Téléphone
+                </label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="06 00 00 00 00"
+                  className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
+                    isDarkMode
+                      ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
+                      : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
+                  }`}
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -188,10 +209,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   >
                     <Calendar
                       className={`w-3.5 h-3.5 ${
-                        isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
+                        isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'
                       }`}
                     />
-                    <span>Date pressentie du Mariage</span>
+                    <span>Choisir une date</span>
                   </label>
                   <input
                     type="date"
@@ -199,7 +220,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     onChange={(e) => setFormData({ ...formData, weddingDate: e.target.value })}
                     className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
                       isDarkMode
-                        ? 'bg-[#22201d] border-[#38332c] text-[#f4f0e8] focus:border-[#9aa891]'
+                        ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
                         : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
                     }`}
                   />
@@ -212,19 +233,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   >
                     <MapPin
                       className={`w-3.5 h-3.5 ${
-                        isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
+                        isDarkMode ? 'text-[#c8c0f5]' : 'text-[#8b9a82]'
                       }`}
                     />
-                    <span>Lieu ou Région du Mariage</span>
+                    <span>Sujet</span>
                   </label>
                   <input
                     type="text"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="ex: Provence, Paris, Château de..."
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder="ex: Demande de devis, Renseignements..."
                     className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
                       isDarkMode
-                        ? 'bg-[#22201d] border-[#38332c] text-[#f4f0e8] focus:border-[#9aa891]'
+                        ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
                         : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
                     }`}
                   />
@@ -237,48 +258,24 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
                   }`}
                 >
-                  Prestation souhaitée
+                  Type d'événement
                 </label>
                 <select
-                  value={formData.serviceType}
-                  onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                  value={formData.eventType}
+                  onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
                   className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
                     isDarkMode
-                      ? 'bg-[#22201d] border-[#38332c] text-[#f4f0e8] focus:border-[#9aa891]'
+                      ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
                       : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
                   }`}
                 >
-                  <option>Organisation Complète & Photographie</option>
-                  <option>Photographie de Mariage Uniquement</option>
-                  <option>Organisation & Scénographie Jour J</option>
-                  <option>Elopement / Séance Engagement</option>
+                  <option>Offre Signature — Mariage clé en main</option>
+                  <option>Offre Élégance — Organisation partielle</option>
+                  <option>Offre Harmonie — Coordination du jour J</option>
+                  <option>EVJF / EVG Shooting Tour à Paris</option>
+                  <option>Demande en mariage</option>
+                  <option>Autre demande</option>
                 </select>
-              </div>
-
-              <div>
-                <div
-                  className={`flex justify-between text-xs mb-1 ${
-                    isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
-                  }`}
-                >
-                  <span>Budget estimé pour la prestation</span>
-                  <span
-                    className={`font-semibold ${
-                      isDarkMode ? 'text-[#9aa891]' : 'text-[#8b9a82]'
-                    }`}
-                  >
-                    {formData.budget} €
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="3000"
-                  max="40000"
-                  step="1000"
-                  value={formData.budget}
-                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className={`w-full ${isDarkMode ? 'accent-[#9aa891]' : 'accent-[#8b9a82]'}`}
-                />
               </div>
 
               <div>
@@ -287,32 +284,47 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
                   }`}
                 >
-                  Parlez-moi de votre vision & vos envies
+                  Votre message
                 </label>
                 <textarea
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Décrivez l'ambiance, le nombre d'invités, ce qui vous tient particulièrement à cœur..."
+                  placeholder="Décrivez votre projet, le nombre d'invités, ce qui vous tient particulièrement à cœur..."
                   className={`w-full px-3.5 py-2.5 rounded-xs border focus:outline-none ${
                     isDarkMode
-                      ? 'bg-[#22201d] border-[#38332c] text-[#f4f0e8] focus:border-[#9aa891]'
+                      ? 'bg-[#22201d] border-[#38332c] text-[#c8c0f5] focus:border-[#c8c0f5]'
                       : 'bg-white border-[#e8e4dc] text-[#2c2b29] focus:border-[#8b9a82]'
                   }`}
                 />
               </div>
 
+              <label
+                className={`flex items-start gap-2 text-xs ${
+                  isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  required
+                  checked={formData.consent}
+                  onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
+                  className={`mt-0.5 ${isDarkMode ? 'accent-[#c8c0f5]' : 'accent-[#8b9a82]'}`}
+                />
+                <span>J'ai lu et accepté les conditions générales</span>
+              </label>
+
               <div className="pt-2 text-center">
                 <button
                   type="submit"
-                  className={`w-full py-3.5 rounded-full font-medium text-sm transition-all shadow-md flex items-center justify-center gap-2 ${
+                  className={`w-full py-2.5 sm:py-3.5 rounded-full font-medium text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-95 ${
                     isDarkMode
-                      ? 'bg-[#9aa891] text-[#141311] hover:bg-[#b5c4ab]'
+                      ? 'bg-[#c8c0f5] text-[#141311] hover:bg-[#e8e4dc]'
                       : 'bg-[#8b9a82] text-white hover:bg-[#74836b]'
                   }`}
                 >
                   <Send className="w-4 h-4" />
-                  <span>Envoyer ma demande de renseignements</span>
+                  <span>Envoyer</span>
                 </button>
               </div>
             </form>

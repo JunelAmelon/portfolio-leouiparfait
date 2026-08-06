@@ -1,6 +1,6 @@
 {
-  "name": "Maria Hoffmann - Wedding Planner & Organization",
-  "description": "Site haut de gamme pour organisation de mariage et photographie de moments précieux, avec animations GSAP fluides et design éditorial raffiné.",
+  "name": "Le Oui Parfait - Organisatrice de Mariage & Coordination du Jour J",
+  "description": "Site vitrine pour Le Oui Parfait, organisatrice de mariage et coordination du jour J, avec présentation des offres, du portfolio et des témoignages clients.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,12 +1,15 @@
 import React from 'react';
 import { SERVICE_CATEGORIES } from '../data/weddingData';
 import { ServiceCategory } from '../types';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 interface CategoriesArchesProps {
   onSelectCategory: (category: ServiceCategory) => void;
   isDarkMode?: boolean;
 }
+
+const cardVariants: Array<'zoom' | 'up' | 'rotate'> = ['zoom', 'up', 'rotate'];
 
 export const CategoriesArches: React.FC<CategoriesArchesProps> = ({
   onSelectCategory,
@@ -14,73 +17,87 @@ export const CategoriesArches: React.FC<CategoriesArchesProps> = ({
 }) => {
   return (
     <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
+      <Reveal variant="fade" className="text-center mb-12">
         <div
           className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-sans-clean font-medium mb-3 ${
             isDarkMode
-              ? 'bg-[#9aa891]/15 text-[#b5c4ab]'
+              ? 'bg-[#c8c0f5]/15 text-[#e8e4dc]'
               : 'bg-[#8b9a82]/15 text-[#5c6954]'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Formules & Prestations</span>
+          <span>Une Offre Pour Chaque Projet de Mariage</span>
         </div>
         <h2
           className={`font-serif-main text-3xl sm:text-5xl font-normal ${
-            isDarkMode ? 'text-[#f4f0e8]' : 'text-[#2c2b29]'
+            isDarkMode ? 'text-[#c8c0f5]' : 'text-[#2c2b29]'
           }`}
         >
-          Nos domaines d'expertise
+          Nos Offres & Tarifs
         </h2>
         <p
           className={`mt-3 text-sm sm:text-base font-sans-clean max-w-xl mx-auto ${
             isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
           }`}
         >
-          De l'ambiance intimiste d'une séance famille à l'envergure d'un grand mariage d'exception.
+          De l'organisation clé en main à la coordination du jour J, une offre adaptée à chaque niveau
+          d'accompagnement. Paiement possible en 2X, 3X ou 4X sans frais.
         </p>
-      </div>
+      </Reveal>
 
-      {/* 3 Arch Cards Container */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-        {SERVICE_CATEGORIES.map((cat) => (
-          <div
+      {/* 3 Envelope Cards Container */}
+      <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-8">
+        {SERVICE_CATEGORIES.map((cat, index) => (
+          <Reveal
             key={cat.id}
-            onClick={() => onSelectCategory(cat)}
-            className="group cursor-pointer flex flex-col items-center"
+            variant={cardVariants[index % cardVariants.length]}
+            delay={index * 120}
+            className="w-full sm:max-w-[290px]"
           >
-            {/* Olive Green Backdrop Badge Frame */}
             <div
-              className={`w-full p-4 pb-6 arch-card transition-transform duration-500 group-hover:-translate-y-2 shadow-md ${
-                isDarkMode ? 'bg-[#3b4737]' : 'bg-[#8b9a82]/85'
-              }`}
+              className="group flex flex-col items-center text-center"
             >
-              <div className="arch-card overflow-hidden aspect-[3/4] relative bg-[#1c1a17]">
+              {/* Envelope Shape */}
+              <div
+                className={`relative w-full h-[250px] sm:h-[290px] rounded-b-2xl transition-transform duration-500 group-hover:-translate-y-2 shadow-md flex items-end justify-center pb-20 sm:pb-24 overflow-visible ${
+                  isDarkMode ? 'bg-[#3b4737]' : 'bg-[#8b9a82]/90'
+                }`}
+              >
+                {/* Envelope Flap */}
+                <div
+                  className={`absolute -top-px left-0 w-full h-[110px] sm:h-[130px] ${
+                    isDarkMode ? 'bg-[#3b4737]' : 'bg-[#8b9a82]/90'
+                  }`}
+                  style={{ clipPath: 'polygon(0 0, 50% 78%, 100% 0)' }}
+                />
                 <img
                   src={cat.image}
                   alt={cat.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
+                  className="relative z-[3] h-[170px] sm:h-[195px] aspect-[3/4] object-cover border-4 sm:border-[6px] border-white shadow-lg -rotate-3 group-hover:rotate-0 transition-transform duration-500 mb-8 sm:mb-10"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
-
-                <div className="absolute bottom-4 left-4 right-4 text-white text-center">
-                  <h3 className="font-serif-main text-xl sm:text-2xl font-light">{cat.title}</h3>
-                  <p className="text-[11px] font-sans-clean opacity-90">{cat.subtitle}</p>
+                <div className="absolute bottom-5 left-3 right-3 text-white z-[3] font-serif-main text-lg sm:text-xl leading-tight">
+                  {cat.title}
                 </div>
               </div>
 
-              {/* Card Footer Button */}
-              <div className="mt-4 flex items-center justify-between text-white px-2">
-                <span className="text-xs font-sans-clean uppercase tracking-wider">
-                  En savoir plus
-                </span>
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#3b4737] transition-colors">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
-              </div>
+              <p
+                className={`mt-4 text-xs sm:text-sm font-sans-clean font-medium ${
+                  isDarkMode ? 'text-[#c8c0f5]' : 'text-[#78876e]'
+                }`}
+              >
+                {cat.subtitle}
+              </p>
+              <p
+                className={`mt-2 text-xs sm:text-sm font-sans-clean leading-relaxed max-w-xs ${
+                  isDarkMode ? 'text-[#b5b0a5]' : 'text-[#5a5750]'
+                }`}
+              >
+                {cat.description}
+              </p>
+
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>
