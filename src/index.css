@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-serif-main {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-script {
+    font-family: 'Alex Brush', cursive;
+  }
+  .font-sans-clean {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom Stamp Border Effect for Testimonials */
+.stamp-border {
+  background: #1e1c19;
+  color: #e8e4dc;
+  position: relative;
+  border: 1px dashed #3a3630;
+}
+
+.stamp-border-light {
+  background: #ffffff;
+  color: #2c2b29;
+  position: relative;
+  border: 1px dashed #d1cbbd;
+}
+
+.stamp-border-olive {
+  background: #465342;
+  color: #f4f0e8;
+  position: relative;
+  border: 1px dashed #62725d;
+}
+
+/* Custom Arch Shape */
+.arch-card {
+  border-radius: 120px 120px 16px 16px;
+}
+
+/* Glass & Soft Shadows */
+.editorial-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
+}
+
+.polaroid-shadow {
+  box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.65);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #141311;
+}
+::-webkit-scrollbar-thumb {
+  background: #9aa891;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b5c4ab;
+}
+
