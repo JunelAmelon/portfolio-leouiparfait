@@ -1,6 +1,6 @@
 import React from 'react';
 import { HERO_IMAGES, CONTACT_INFO } from '../data/weddingData';
-import { ArrowUp, Instagram, Facebook, Heart } from 'lucide-react';
+import { ArrowUp, Instagram, Facebook } from 'lucide-react';
 import { Reveal } from './Reveal';
 
 interface FooterBannerProps {
@@ -117,15 +117,6 @@ export const FooterBanner: React.FC<FooterBannerProps> = ({
               className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#c8c0f5] hover:text-[#141311] transition-colors"
             >
               <Facebook className="w-4 h-4" />
-            </a>
-            <a
-              href="https://pinterest.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Pinterest"
-              className="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-[#c8c0f5] hover:text-[#141311] transition-colors"
-            >
-              <Heart className="w-4 h-4" />
             </a>
           </div>
 
